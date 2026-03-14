@@ -47,6 +47,7 @@ datetime,open,high,low,close,volume
 6. Deploy live with strict risk controls.
 
 ## How to run it
+## Quick start
 
 ### Swing trader mode (default)
 
