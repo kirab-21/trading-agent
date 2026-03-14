@@ -25,6 +25,7 @@ A minimal, scalable Python codebase for:
 - `trading_agent/data.py` - CSV loader for OHLCV candles.
 - `trading_agent/broker.py` - Broker abstraction + paper broker.
 - `run_backtest.py` - CLI entrypoint for backtest.
+- `DEPLOYMENT.md` - step-by-step deployment runbook.
 
 ## CSV format expected
 
@@ -36,6 +37,16 @@ datetime,open,high,low,close,volume
 
 `datetime` should be in ISO-like format (for example: `2024-01-01 09:15:00`).
 
+## What to do (quick path)
+
+1. Prepare CSV data for your NSE/BSE symbol.
+2. Run backtest in `swing` and `daily` mode.
+3. Tune risk and indicator params.
+4. Validate on out-of-sample data.
+5. Start paper trading.
+6. Deploy live with strict risk controls.
+
+## How to run it
 ## Quick start
 
 ### Swing trader mode (default)
@@ -63,6 +74,38 @@ python run_backtest.py \
   --slow-ema 50 \
   --rsi-buy-threshold 55
 ```
+
+## How to backtest properly
+
+- Use realistic costs (`--transaction-cost-pct`) and slippage (`--slippage-pct`).
+- Test on multi-year data.
+- Keep separate train/test time periods.
+- Compare both modes and keep the one matching your timeframe.
+
+
+## How to use it to generate wealth (practically)
+
+Read and follow **[WEALTH_PLAYBOOK.md](WEALTH_PLAYBOOK.md)**.
+
+It gives a concrete framework for:
+
+- risk-first capital allocation,
+- compounding without over-sizing,
+- backtest -> paper -> live progression,
+- and review metrics to scale safely.
+
+## How to deploy
+
+Deployment plan is documented in:
+
+- **[DEPLOYMENT.md](DEPLOYMENT.md)**
+
+It includes:
+
+- local setup,
+- broker integration approach,
+- VPS + `systemd` deployment pattern,
+- monitoring and risk checklist.
 
 ## Notes for Indian market usage
 
